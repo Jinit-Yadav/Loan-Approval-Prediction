@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - EduPredict</title>
+    <title>About - LoanPredict</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -388,7 +388,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('index') }}">
-                <i class="fas fa-graduation-cap me-2"></i>EduPredict
+                <i class="fas fa-hand-holding-usd me-2"></i>LoanPredict
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -421,8 +421,8 @@
                 <div class="shape shape-2"></div>
             </div>
             <div class="container hero-content">
-                <h1 class="display-4 fw-bold mb-4">About EduPredict</h1>
-                <p class="lead mb-4">Learn about our mission, how our prediction system works, and the developer behind this project</p>
+                <h1 class="display-4 fw-bold mb-4">About LoanPredict</h1>
+                <p class="lead mb-4">Learn about our mission, how our loan prediction system works, and the developer behind this project</p>
             </div>
         </section>
 
@@ -440,7 +440,7 @@
                             <i class="fas fa-bullseye"></i>
                         </div>
                         <h4>Our Mission</h4>
-                        <p class="text-muted">EduPredict aims to revolutionize education by using predictive analytics to identify students who may need additional support. Our goal is to help educators intervene early and improve student outcomes through data-driven insights.</p>
+                        <p class="text-muted">LoanPredict aims to revolutionize the loan approval process by using predictive analytics to assess loan applications accurately. Our goal is to help financial institutions make data-driven decisions while providing applicants with transparency about their approval chances.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 mb-4">
@@ -449,7 +449,7 @@
                             <i class="fas fa-lightbulb"></i>
                         </div>
                         <h4>How It Works</h4>
-                        <p class="text-muted">Our system uses machine learning algorithms to analyze various student factors including demographic information, academic history, and socioeconomic background to predict math performance with high accuracy.</p>
+                        <p class="text-muted">Our system uses machine learning algorithms to analyze various applicant factors including income, assets, credit score, and loan details to predict loan approval probability with high accuracy. The model has been trained on historical loan data to identify patterns that influence approval decisions.</p>
                     </div>
                 </div>
             </div>
@@ -465,10 +465,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="developer-card">
-                        <img src="{{ url_for('static', filename='images/img.jpg') }}" alt="Pratham Patade" class="developer-img">
-                        <h3>Pratham Patade</h3>
-                        <p class="text-muted">Computer Science Student & Developer</p>
-                        <p>I'm a passionate computer science student with a strong interest in machine learning and data science. This project combines my technical skills with my desire to create solutions that can make a positive impact in education.</p>
+                        <img src="{{ url_for('static', filename='images/img.jpg') }}" alt="Developer" class="developer-img">
+                        <h3>Jinit Yadav</h3>
+                        <p class="text-muted">Data Science Student & Developer</p>
+                        <p>I'm a passionate data science student with a strong interest in machine learning and financial technology. This project combines my technical skills with my desire to create solutions that can make a positive impact in the financial sector.</p>
                         
                         <div class="tech-stack">
                             <span class="tech-item">Python</span>
@@ -501,25 +501,58 @@
                 <div class="col-md-6 mb-4">
                     <div class="card feature-card h-100 p-4">
                         <h4 class="mb-3">Technical Implementation</h4>
-                        <p class="text-muted">This project was built using a Flask backend with machine learning models trained on student performance data. The frontend utilizes Bootstrap for responsive design and custom CSS for the unique visual style.</p>
+                        <p class="text-muted">This project was built using a Flask backend with machine learning models trained on loan application data. The frontend utilizes Bootstrap for responsive design and custom CSS for the unique visual style.</p>
                         <ul class="list-unstyled mt-3">
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Machine Learning: Scikit-learn, Pandas, NumPy</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Machine Learning: Scikit-learn, Pandas, NumPy, XGBoost</li>
                             <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Backend: Python, Flask</li>
                             <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Frontend: HTML5, CSS3, JavaScript, Bootstrap</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Data: Student Performance Dataset</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Data: Loan Application Dataset</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="card feature-card h-100 p-4">
                         <h4 class="mb-3">Features & Functionality</h4>
-                        <p class="text-muted">EduPredict offers a comprehensive solution for predicting student performance with an intuitive interface and detailed results.</p>
+                        <p class="text-muted">LoanPredict offers a comprehensive solution for predicting loan approval with an intuitive interface and detailed results.</p>
                         <ul class="list-unstyled mt-3">
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Student performance prediction based on multiple factors</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Loan approval prediction based on financial factors</li>
                             <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> User-friendly web interface</li>
                             <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Responsive design for all devices</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Detailed analysis and visualization of results</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Educational insights for teachers and administrators</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Detailed probability analysis of approval chances</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Financial insights for applicants</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Features Section -->
+        <section class="container mb-5">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Data Features Used</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card h-100 p-4">
+                        <h4 class="mb-3">Applicant Information</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="fas fa-user text-primary me-2"></i> Number of Dependents</li>
+                            <li class="mb-2"><i class="fas fa-graduation-cap text-primary me-2"></i> Education Level</li>
+                            <li class="mb-2"><i class="fas fa-briefcase text-primary me-2"></i> Employment Status</li>
+                            <li class="mb-2"><i class="fas fa-money-bill-wave text-primary me-2"></i> Annual Income</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card h-100 p-4">
+                        <h4 class="mb-3">Financial Details</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="fas fa-credit-card text-primary me-2"></i> Loan Amount Requested</li>
+                            <li class="mb-2"><i class="fas fa-calendar-alt text-primary me-2"></i> Loan Term</li>
+                            <li class="mb-2"><i class="fas fa-chart-line text-primary me-2"></i> CIBIL Credit Score</li>
+                            <li class="mb-2"><i class="fas fa-home text-primary me-2"></i> Asset Values (Residential, Commercial, Luxury, Bank)</li>
                         </ul>
                     </div>
                 </div>
@@ -530,17 +563,21 @@
         <section class="container mb-5">
             <div class="stats-container text-center">
                 <h3 class="mb-4">College Mini-Project</h3>
-                <p class="lead text-muted mb-4">This application was developed as part of my academic curriculum to demonstrate practical implementation of machine learning in web applications.</p>
+                <p class="lead text-muted mb-4">This application was developed as part of my academic curriculum to demonstrate practical implementation of machine learning in financial applications.</p>
                 <div class="row">
-                    <div class="col-md-4 col-6 mb-3">
+                    <div class="col-md-3 col-6 mb-3">
+                        <h2 class="stat-number">98%</h2>
+                        <p class="text-muted">Accuracy</p>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
                         <h2 class="stat-number">ML</h2>
                         <p class="text-muted">Machine Learning</p>
                     </div>
-                    <div class="col-md-4 col-6 mb-3">
+                    <div class="col-md-3 col-6 mb-3">
                         <h2 class="stat-number">Web</h2>
                         <p class="text-muted">Web Development</p>
                     </div>
-                    <div class="col-md-4 col-6 mb-3">
+                    <div class="col-md-3 col-6 mb-3">
                         <h2 class="stat-number">AI</h2>
                         <p class="text-muted">AI Integration</p>
                     </div>
@@ -553,8 +590,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="mb-3"><i class="fas fa-graduation-cap me-2"></i>EduPredict</h5>
-                    <p class="text-light">Using AI to enhance educational outcomes and student success.</p>
+                    <h5 class="mb-3"><i class="fas fa-hand-holding-usd me-2"></i>LoanPredict</h5>
+                    <p class="text-light">Using AI to predict loan approval chances accurately.</p>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">Quick Links</h5>
@@ -576,7 +613,7 @@
                 </div>
             </div>
             <hr class="my-4 bg-light">
-            <p class="mb-0">&copy; 2023 EduPredict. All rights reserved.</p>
+            <p class="mb-0">&copy; 2023 LoanPredict. All rights reserved.</p>
         </div>
     </footer>
 

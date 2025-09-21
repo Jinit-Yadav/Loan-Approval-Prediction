@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPredict - Student Performance Predictor</title>
+    <title>LoanSecure - Loan Approval Predictor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3a56d4;
-            --secondary: #7209b7;
+            --primary: #2d5bff;
+            --primary-dark: #2548d4;
+            --secondary: #4c1d95;
             --accent: #f72585;
-            --success: #4cc9f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
             --light-bg: #f8f9fc;
             --dark-text: #2b2d42;
             --light-text: #6c757d;
             --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             --hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-bg: linear-gradient(135deg, #2d5bff 0%, #4c1d95 100%);
             --gradient-card: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
         }
         
@@ -35,8 +37,8 @@
             color: var(--dark-text);
             line-height: 1.6;
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(67, 97, 238, 0.1) 0%, transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(114, 9, 183, 0.1) 0%, transparent 25%);
+                radial-gradient(circle at 15% 50%, rgba(45, 91, 255, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(76, 29, 149, 0.1) 0%, transparent 25%);
             background-attachment: fixed;
         }
         
@@ -69,7 +71,7 @@
         }
         
         .hero-section {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.9) 0%, rgba(114, 9, 183, 0.9) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234361ee"/><path d="M0 0L100 100" stroke="white" stroke-width="0.5" opacity="0.2"/><path d="M100 0L0 100" stroke="white" stroke-width="0.5" opacity="0.2"/></svg>');
+            background: linear-gradient(135deg, rgba(45, 91, 255, 0.9) 0%, rgba(76, 29, 149, 0.9) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232d5bff"/><path d="M0 0L100 100" stroke="white" stroke-width="0.5" opacity="0.2"/><path d="M100 0L0 100" stroke="white" stroke-width="0.5" opacity="0.2"/></svg>');
             color: white;
             padding: 6rem 0 5rem;
             margin-bottom: 4rem;
@@ -263,7 +265,7 @@
         
         .form-control:focus, .form-select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
+            box-shadow: 0 0 0 0.25rem rgba(45, 91, 255, 0.15);
         }
         
         .form-label {
@@ -298,8 +300,8 @@
         
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #651e97 100%);
+            box-shadow: 0 8px 20px rgba(45, 91, 255, 0.3);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #3b1680 100%);
         }
         
         .btn-primary:hover::before {
@@ -313,16 +315,24 @@
         }
         
         .prediction-result {
-            background: linear-gradient(135deg, var(--success) 0%, #3aa9db 100%);
-            color: white;
             padding: 2rem;
             border-radius: 15px;
             margin-top: 2.5rem;
             text-align: center;
             font-size: 1.8rem;
             font-weight: 700;
-            box-shadow: 0 8px 20px rgba(76, 201, 240, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             animation: fadeIn 0.8s ease;
+        }
+        
+        .prediction-approved {
+            background: linear-gradient(135deg, var(--success) 0%, #0da271 100%);
+            color: white;
+        }
+        
+        .prediction-denied {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+            color: white;
         }
         
         @keyframes fadeIn {
@@ -452,7 +462,7 @@
             top: 10px;
             left: 20px;
             font-size: 5rem;
-            color: rgba(67, 97, 238, 0.1);
+            color: rgba(45, 91, 255, 0.1);
             font-family: Georgia, serif;
         }
         
@@ -482,8 +492,8 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <i class="fas fa-graduation-cap me-2"></i>EduPredict
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hand-holding-usd me-2"></i>LoanSecure
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -507,7 +517,7 @@
         </div>
     </nav>
 
-    <!-- Main Content (changes based on page) -->
+    <!-- Main Content -->
     <div id="page-content">
         <!-- Home Page Content -->
         <div id="home-page">
@@ -518,9 +528,9 @@
                     <div class="shape shape-2"></div>
                 </div>
                 <div class="container hero-content">
-                    <h1 class="display-4 fw-bold mb-4">Predict Student Exam Performance</h1>
-                    <p class="lead mb-4">Using advanced machine learning to help educators identify students who may need additional support</p>
-                    <a href="{{ url_for('predict_datapoint') }}" class="btn btn-hero">Try Predictor <i class="fas fa-arrow-right ms-2"></i></a>
+                    <h1 class="display-4 fw-bold mb-4">Predict Your Loan Approval Chances</h1>
+                    <p class="lead mb-4">Using advanced machine learning to help you understand your loan eligibility before applying</p>
+                    <a href="#predictor" class="btn btn-hero">Check Eligibility <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </section>
 
@@ -529,7 +539,7 @@
                 <div class="row text-center mb-5">
                     <div class="col-lg-12">
                         <h2 class="section-title">How It Works</h2>
-                        <p class="lead text-muted">Our predictive model analyzes multiple factors to estimate student performance</p>
+                        <p class="lead text-muted">Our predictive model analyzes multiple financial factors to estimate loan approval chances</p>
                     </div>
                 </div>
                 <div class="row">
@@ -538,8 +548,8 @@
                             <div class="feature-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
-                            <h4>Data Analysis</h4>
-                            <p class="text-muted">We analyze historical performance data to identify patterns and predictors of success.</p>
+                            <h4>Financial Analysis</h4>
+                            <p class="text-muted">We analyze income, credit history, and financial data to assess loan eligibility.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -548,16 +558,16 @@
                                 <i class="fas fa-brain"></i>
                             </div>
                             <h4>Machine Learning</h4>
-                            <p class="text-muted">Our algorithm uses multiple factors to predict math scores with high accuracy.</p>
+                            <p class="text-muted">Our algorithm uses multiple factors to predict loan approval with high accuracy.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card feature-card h-100 p-4 text-center">
                             <div class="feature-icon">
-                                <i class="fas fa-hands-helping"></i>
+                                <i class="fas fa-user-shield"></i>
                             </div>
-                            <h4>Early Intervention</h4>
-                            <p class="text-muted">Identify at-risk students early to provide targeted support and improve outcomes.</p>
+                            <h4>Risk Assessment</h4>
+                            <p class="text-muted">Identify your financial standing and improve your chances of loan approval.</p>
                         </div>
                     </div>
                 </div>
@@ -568,137 +578,40 @@
                 <div class="stats-container text-center">
                     <div class="row">
                         <div class="col-md-3 col-6 mb-3">
-                            <h2 class="stat-number">92%</h2>
+                            <h2 class="stat-number">94%</h2>
                             <p class="text-muted">Prediction Accuracy</p>
                         </div>
                         <div class="col-md-3 col-6 mb-3">
-                            <h2 class="stat-number">5,000+</h2>
-                            <p class="text-muted">Students Analyzed</p>
+                            <h2 class="stat-number">15,000+</h2>
+                            <p class="text-muted">Applications Analyzed</p>
                         </div>
                         <div class="col-md-3 col-6 mb-3">
-                            <h2 class="stat-number">12</h2>
+                            <h2 class="stat-number">18</h2>
                             <p class="text-muted">Factors Considered</p>
                         </div>
                         <div class="col-md-3 col-6 mb-3">
-                            <h2 class="stat-number">87%</h2>
-                            <p class="text-muted">Improved Outcomes</p>
+                            <h2 class="stat-number">83%</h2>
+                            <p class="text-muted">Approval Rate</p>
                         </div>
                     </div>
                 </div>
             </section>
-
 
             <!-- CTA Section -->
-            <section class="container text-center py-5">
-                <h2 class="fw-bold mb-3">Ready to Predict Student Performance?</h2>
-                <p class="lead text-muted mb-4">Try our predictor tool now to get insights into student math scores</p>
-                <a href="{{ url_for('predict_datapoint') }}" class="btn btn-primary btn-lg px-5 py-3">Get Started <i class="fas fa-arrow-right ms-2"></i></a>
+            <section class="container text-center py-5" id="predictor">
+                <h2 class="fw-bold mb-3">Ready to Check Your Loan Eligibility?</h2>
+                <p class="lead text-muted mb-4">Try our predictor tool now to get insights into your loan approval chances</p>
+                <a href="#predictor-form" class="btn btn-primary btn-lg px-5 py-3">Check Eligibility <i class="fas fa-arrow-right ms-2"></i></a>
             </section>
         </div>
-
-        <!-- Prediction Page Content (initially hidden) -->
-        <div id="prediction-page" style="display: none;">
-            <div class="container">
-                <div class="login">
-                    <h1 class="text-center mb-4">
-                        <i class="fas fa-graduation-cap me-2"></i>Student Exam Performance Indicator
-                    </h1>
-                    
-                    <form action="{{ url_for('predict_datapoint')}}" method="post">
-                        <h1 class="text-center mb-4">
-                            <legend>Student Exam Performance Prediction</legend>
-                        </h1>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Gender</label>
-                                <select class="form-select" name="gender" required>
-                                    <option class="placeholder" selected disabled value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Race or Ethnicity</label>
-                                <select class="form-select" name="ethnicity" required>
-                                    <option class="placeholder" selected disabled value="">Select Ethnicity</option>
-                                    <option value="group A">Group A</option>
-                                    <option value="group B">Group B</option>
-                                    <option value="group C">Group C</option>
-                                    <option value="group D">Group D</option>
-                                    <option value="group E">Group E</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Parental Level of Education</label>
-                                <select class="form-select" name="parental_level_of_education" required>
-                                    <option class="placeholder" selected disabled value="">Select Parent Education</option>
-                                    <option value="associate's degree">Associate's Degree</option>
-                                    <option value="bachelor's degree">Bachelor's Degree</option>
-                                    <option value="high school">High School</option>
-                                    <option value="master's degree">Master's Degree</option>
-                                    <option value="some college">Some College</option>
-                                    <option value="some high school">Some High School</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Lunch Type</label>
-                                <select class="form-select" name="lunch" required>
-                                    <option class="placeholder" selected disabled value="">Select Lunch Type</option>
-                                    <option value="free/reduced">Free/Reduced</option>
-                                    <option value="standard">Standard</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Test Preparation Course</label>
-                                <select class="form-select" name="test_preparation_course" required>
-                                    <option class="placeholder" selected disabled value="">Select Test Course</option>
-                                    <option value="none">None</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Reading Score out of 100</label>
-                                <input class="form-control" type="number" name="reading_score"
-                                    placeholder="Enter reading score" min='0' max='100' required />
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Writing Score out of 100</label>
-                                <input class="form-control" type="number" name="writing_score"
-                                    placeholder="Enter writing score" min='0' max='100' required />
-                            </div>
-                            <div class="col-md-6 mb-3 d-flex align-items-end">
-                                <button class="btn btn-primary w-100 py-3" type="submit">
-                                    <i class="fas fa-calculator me-2"></i>Predict Math Score
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <div class="prediction-result">
-                        <i class="fas fa-chart-bar me-2"></i> Predicted Math Score: {{results}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="text-center">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="mb-3"><i class="fas fa-graduation-cap me-2"></i>EduPredict</h5>
-                    <p class="text-light">Using AI to enhance educational outcomes and student success.</p>
+                    <h5 class="mb-3"><i class="fas fa-hand-holding-usd me-2"></i>LoanSecure</h5>
+                    <p class="text-light">Using AI to provide financial insights and loan approval predictions.</p>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">Quick Links</h5>
@@ -715,12 +628,12 @@
                         <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <hr class="my-4 bg-light">
-            <p class="mb-0">&copy; 2023 EduPredict. All rights reserved.</p>
+            <p class="mb-0">&copy; 2023 LoanSecure. All rights reserved.</p>
         </div>
     </footer>
 
@@ -731,20 +644,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Simple routing for demonstration purposes
-        function showPage(pageId) {
-            document.getElementById('home-page').style.display = 'none';
-            document.getElementById('prediction-page').style.display = 'none';
-            document.getElementById(pageId).style.display = 'block';
-        }
-        
-        // Check the current URL to determine which page to show
-        if (window.location.pathname === '/predictdata') {
-            showPage('prediction-page');
-        } else {
-            showPage('home-page');
-        }
-        
         // Back to top button
         const backToTopButton = document.querySelector('.back-to-top');
         
@@ -759,6 +658,69 @@
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Form submission handler
+        document.getElementById('loanPredictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate prediction (in a real application, this would call your backend API)
+            const formData = new FormData(this);
+            const loanAmount = parseFloat(formData.get('loan_amount'));
+            const applicantIncome = parseFloat(formData.get('applicant_income'));
+            const creditHistory = parseInt(formData.get('credit_history'));
+            
+            // Simple mock prediction logic
+            const incomeToLoanRatio = applicantIncome / loanAmount;
+            let approvalChance = 0;
+            
+            if (creditHistory === 1) {
+                approvalChance = 70 + (incomeToLoanRatio * 10);
+            } else {
+                approvalChance = 30 + (incomeToLoanRatio * 5);
+            }
+            
+            // Cap between 5% and 95%
+            approvalChance = Math.max(5, Math.min(95, Math.round(approvalChance)));
+            
+            // Display result
+            const resultElement = document.getElementById('prediction-result');
+            const resultText = document.getElementById('result-text');
+            
+            if (approvalChance >= 60) {
+                resultElement.className = 'prediction-result prediction-approved';
+                resultText.innerHTML = `High Approval Chance: ${approvalChance}%`;
+            } else if (approvalChance >= 30) {
+                resultElement.className = 'prediction-result';
+                resultElement.style.background = 'linear-gradient(135deg, var(--warning) 0%, #e99a0c 100%)';
+                resultElement.style.color = 'white';
+                resultText.innerHTML = `Moderate Approval Chance: ${approvalChance}%`;
+            } else {
+                resultElement.className = 'prediction-result prediction-denied';
+                resultText.innerHTML = `Low Approval Chance: ${approvalChance}%`;
+            }
+            
+            resultElement.style.display = 'block';
+            
+            // Scroll to result
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>

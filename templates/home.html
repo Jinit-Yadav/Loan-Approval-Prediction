@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPredict - Student Performance Predictor</title>
+    <title>LoanPredict - Loan Approval Predictor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
             --secondary: #7209b7;
             --accent: #f72585;
             --success: #4cc9f0;
+            --danger: #f72585;
             --light-bg: #f8f9fc;
             --dark-text: #2b2d42;
             --light-text: #6c757d;
@@ -233,7 +234,7 @@
         }
         
         .login {
-            max-width: 850px;
+            max-width: 950px;
             margin: 3rem auto;
             padding: 3rem;
             background: white;
@@ -323,6 +324,33 @@
             font-weight: 700;
             box-shadow: 0 8px 20px rgba(76, 201, 240, 0.3);
             animation: fadeIn 0.8s ease;
+        }
+        
+        .prediction-rejected {
+            background: linear-gradient(135deg, var(--danger) 0%, #c81e5f 100%);
+        }
+        
+        .probability-meter {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress {
+            height: 25px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar-approval {
+            background: linear-gradient(90deg, var(--success) 0%, #3aa9db 100%);
+        }
+        
+        .progress-bar-rejection {
+            background: linear-gradient(90deg, var(--danger) 0%, #c81e5f 100%);
         }
         
         @keyframes fadeIn {
@@ -483,7 +511,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('index') }}">
-                <i class="fas fa-graduation-cap me-2"></i>EduPredict
+                <i class="fas fa-hand-holding-usd me-2"></i>LoanPredict
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -511,81 +539,117 @@
     <div class="container">
         <!-- Prediction Form Section -->
         <div class="login mt-5">
-            <h2 class="text-center mb-4">Student Performance Predictor</h2>
-            <p class="text-center text-muted mb-5">Fill in the details below to predict the student's math score</p>
+            <h2 class="text-center mb-4">Loan Approval Predictor</h2>
+            <p class="text-center text-muted mb-5">Fill in the details below to predict your loan approval chances</p>
             
             <form method="POST" action="{{ url_for('predict_datapoint') }}">
                 <div class="row">
                     <div class="col-md-6 mb-4">
-                        <label for="gender" class="form-label">Gender</label>
-                        <select class="form-select" id="gender" name="gender" required>
-                            <option value="" selected disabled>Select Gender</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                        </select>
+                        <label for="no_of_dependents" class="form-label">Number of Dependents</label>
+                        <input type="number" class="form-control" id="no_of_dependents" name="no_of_dependents" min="0" max="10" required>
                     </div>
                     
                     <div class="col-md-6 mb-4">
-                        <label for="ethnicity" class="form-label">Race/Ethnicity</label>
-                        <select class="form-select" id="ethnicity" name="ethnicity" required>
-                            <option value="" selected disabled>Select Ethnicity</option>
-                            <option value="group A">Group A</option>
-                            <option value="group B">Group B</option>
-                            <option value="group C">Group C</option>
-                            <option value="group D">Group D</option>
-                            <option value="group E">Group E</option>
-                        </select>
-                    </div>
-                    
-                    <div class="col-md-6 mb-4">
-                        <label for="parental_level_of_education" class="form-label">Parental Education</label>
-                        <select class="form-select" id="parental_level_of_education" name="parental_level_of_education" required>
+                        <label for="education" class="form-label">Education</label>
+                        <select class="form-select" id="education" name="education" required>
                             <option value="" selected disabled>Select Education Level</option>
-                            <option value="associate's degree">Associate's Degree</option>
-                            <option value="bachelor's degree">Bachelor's Degree</option>
-                            <option value="high school">High School</option>
-                            <option value="master's degree">Master's Degree</option>
-                            <option value="some college">Some College</option>
-                            <option value="some high school">Some High School</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Not Graduate">Not Graduate</option>
                         </select>
                     </div>
                     
                     <div class="col-md-6 mb-4">
-                        <label for="lunch" class="form-label">Lunch Type</label>
-                        <select class="form-select" id="lunch" name="lunch" required>
-                            <option value="" selected disabled>Select Lunch Type</option>
-                            <option value="free/reduced">Free/Reduced</option>
-                            <option value="standard">Standard</option>
+                        <label for="self_employed" class="form-label">Self Employed</label>
+                        <select class="form-select" id="self_employed" name="self_employed" required>
+                            <option value="" selected disabled>Select Employment Type</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
                         </select>
                     </div>
                     
                     <div class="col-md-6 mb-4">
-                        <label for="test_preparation_course" class="form-label">Test Preparation Course</label>
-                        <select class="form-select" id="test_preparation_course" name="test_preparation_course" required>
-                            <option value="" selected disabled>Select Status</option>
-                            <option value="completed">Completed</option>
-                            <option value="none">None</option>
-                        </select>
+                        <label for="income_annum" class="form-label">Annual Income (₹)</label>
+                        <input type="number" class="form-control" id="income_annum" name="income_annum" min="0" required>
                     </div>
                     
                     <div class="col-md-6 mb-4">
-                        <label for="reading_score" class="form-label">Reading Score (out of 100)</label>
-                        <input type="number" class="form-control" id="reading_score" name="reading_score" min="0" max="100" required>
+                        <label for="loan_amount" class="form-label">Loan Amount (₹)</label>
+                        <input type="number" class="form-control" id="loan_amount" name="loan_amount" min="0" required>
                     </div>
                     
                     <div class="col-md-6 mb-4">
-                        <label for="writing_score" class="form-label">Writing Score (out of 100)</label>
-                        <input type="number" class="form-control" id="writing_score" name="writing_score" min="0" max="100" required>
+                        <label for="loan_term" class="form-label">Loan Term (years)</label>
+                        <input type="number" class="form-control" id="loan_term" name="loan_term" min="1" max="30" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <label for="cibil_score" class="form-label">CIBIL Score</label>
+                        <input type="number" class="form-control" id="cibil_score" name="cibil_score" min="300" max="900" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <label for="residential_assets_value" class="form-label">Residential Assets Value (₹)</label>
+                        <input type="number" class="form-control" id="residential_assets_value" name="residential_assets_value" min="0" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <label for="commercial_assets_value" class="form-label">Commercial Assets Value (₹)</label>
+                        <input type="number" class="form-control" id="commercial_assets_value" name="commercial_assets_value" min="0" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <label for="luxury_assets_value" class="form-label">Luxury Assets Value (₹)</label>
+                        <input type="number" class="form-control" id="luxury_assets_value" name="luxury_assets_value" min="0" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <label for="bank_asset_value" class="form-label">Bank Asset Value (₹)</label>
+                        <input type="number" class="form-control" id="bank_asset_value" name="bank_asset_value" min="0" required>
                     </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary mt-3">Predict Math Score</button>
+                <button type="submit" class="btn btn-primary mt-3">Predict Loan Approval</button>
             </form>
             
             {% if results is defined %}
-            <div class="prediction-result">
-                Predicted Math Score: {{ results }}
+            <div class="prediction-result {% if results == 0 %}prediction-rejected{% endif %}">
+                {% if results == 1 %}
+                <i class="fas fa-check-circle me-2"></i>Loan Approved!
+                {% else %}
+                <i class="fas fa-times-circle me-2"></i>Loan Not Approved
+                {% endif %}
             </div>
+            
+            {% if approval_probability is defined and rejection_probability is defined %}
+            <div class="probability-meter">
+                <h5 class="mb-3">Approval Probability</h5>
+                
+                <div class="d-flex justify-content-between mb-1">
+                    <span>Rejection</span>
+                    <span>Approval</span>
+                </div>
+                
+                <div class="progress">
+                    <div class="progress-bar progress-bar-rejection" role="progressbar" 
+                         style="width: {{ rejection_probability }}%" 
+                         aria-valuenow="{{ rejection_probability.split('%')[0] }}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                    </div>
+                    <div class="progress-bar progress-bar-approval" role="progressbar" 
+                         style="width: {{ approval_probability }}%" 
+                         aria-valuenow="{{ approval_probability.split('%')[0] }}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger">{{ rejection_probability }} Chance of Rejection</span>
+                    <span class="text-success">{{ approval_probability }} Chance of Approval</span>
+                </div>
+            </div>
+            {% endif %}
             {% endif %}
         </div>
     </div>
@@ -595,13 +659,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="mb-3"><i class="fas fa-graduation-cap me-2"></i>EduPredict</h5>
-                    <p class="text-light">Using AI to enhance educational outcomes and student success.</p>
+                    <h5 class="mb-3"><i class="fas fa-hand-holding-usd me-2"></i>LoanPredict</h5>
+                    <p class="text-light">Using AI to predict loan approval chances accurately.</p>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url_for('index') }}" class="text-light text-decoration-none">Home</a></li>
+                    <ul class="list-unstyled"><li><a href="{{ url_for('index') }}" class="text-light text-decoration-none">Home</a></li>
                         <li><a class="nav-link active" href="{{ url_for('predict_datapoint') }}">Predictor Tool</a></li>
                         <li><a href="{{ url_for('about') }}" class="text-light text-decoration-none">About Us</a></li>
                         <li><a href="{{ url_for('contact') }}" class="text-light text-decoration-none">Contact</a></li>
@@ -618,7 +681,7 @@
                 </div>
             </div>
             <hr class="my-4 bg-light">
-            <p class="mb-0">&copy; 2023 EduPredict. All rights reserved.</p>
+            <p class="mb-0">&copy; 2023 LoanPredict. All rights reserved.</p>
         </div>
     </footer>
 
