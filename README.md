@@ -88,7 +88,7 @@ The project uses a **Random Forest Classifier** which demonstrated the best perf
 
 ## 📁 Project Structure
 
-
+```
 loan-approval-prediction/
 ├── app.py                 # Main application file
 ├── requirements.txt       # Python dependencies
@@ -105,7 +105,7 @@ loan-approval-prediction/
 ├── data/                 # Dataset
 │   └── loan_data.csv
 └── README.md
-
+```
 
 ## 🔮 Future Enhancements
 
